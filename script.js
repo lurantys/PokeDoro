@@ -75,7 +75,7 @@ function playLevelUpSound() {
     }
 }
 
-// Update startTimer function
+// Update startTimer function by removing opacity changes
 function startTimer() {
     const startBtn = document.getElementById('start-btn');
     const minutesInput = document.getElementById('minutes');
@@ -83,8 +83,7 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         startBtn.textContent = 'Pause';
-        minutesInput.readOnly = true; // Disable input
-        minutesInput.style.opacity = '0.7'; // Visual feedback
+        minutesInput.readOnly = true; // Disable input without changing appearance
         
         if (!timeLeft) {
             const workDuration = parseInt(minutesInput.value);
@@ -101,25 +100,23 @@ function startTimer() {
         isRunning = false;
         startBtn.textContent = 'Start';
         minutesInput.readOnly = false; // Re-enable input
-        minutesInput.style.opacity = '1'; // Restore opacity
         clearInterval(timer);
     }
 }
 
-// Update resetTimer function
+// Update resetTimer function by removing opacity reset
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
     timeLeft = null;
     isBreakTime = false;
-    originalWorkDuration = null; // Reset original duration
+    originalWorkDuration = null;
     
     const minutesInput = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     const startBtn = document.getElementById('start-btn');
     
     minutesInput.readOnly = false; // Re-enable input
-    minutesInput.style.opacity = '1'; // Restore opacity
     minutesInput.value = 25;
     secondsDisplay.textContent = '00';
     startBtn.textContent = 'Start';
