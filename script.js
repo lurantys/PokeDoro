@@ -1,64 +1,118 @@
 const pokemonSprites = [
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/bulbasaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/ivysaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/ivysaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/venusaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/venusaur.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/charmander.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/charmeleon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/charmeleon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/charizard.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/charizard.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/squirtle.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/wartortle.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/wartortle.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/blastoise.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/pikachu.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/raichu.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/raichu.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/eevee.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/eevee.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/mew.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mew.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/vulpix.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/vulpix.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/clefairy.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/clefairy.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/jigglypuff.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/jigglypuff.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/mareep.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mareep.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/wooper.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/wooper.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/umbreon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/umbreon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/espeon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/espeon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/glaceon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/glaceon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/leafeon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/leafeon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/flareon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/flareon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/vaporeon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/vaporeon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/jolteon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/jolteon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/flareon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/flareon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/espeon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/espeon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/umbreon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/umbreon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/leafeon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/leafeon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/glaceon.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/glaceon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/sylveon.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/sylveon.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/meowth.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/meowth.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/psyduck.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/mew.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mew.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/mewtwo.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mewtwo.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/dragonite.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/dragonite.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/growlithe.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/growlithe.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/ponyta.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/ponyta.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/slowpoke.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/slowpoke.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/squirtle.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/charmander.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/bulbasaur.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/dratini.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/dratini.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/snorlax.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/snorlax.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/mudkip.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mudkip.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/normal/totodile.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/totodile.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/arcanine.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/arcanine.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/vulpix.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/vulpix.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/ninetales.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/ninetales.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/psyduck.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/togepi.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/togepi.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/togetic.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/togetic.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/togekiss.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/togekiss.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/mareep.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mareep.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/flaaffy.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/flaaffy.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/ampharos.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/ampharos.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/chikorita.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/shiny/chikorita.gif',
     'https://img.pokemondb.net/sprites/black-white/anim/normal/cyndaquil.gif',
-    'https://img.pokemondb.net/sprites/black-white/anim/shiny/cyndaquil.gif'
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/cyndaquil.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/totodile.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/totodile.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/marill.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/marill.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/azumarill.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/azumarill.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/wooper.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/wooper.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/quagsire.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/quagsire.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/mudkip.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/mudkip.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/torchic.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/torchic.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/treecko.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/treecko.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/ralts.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/ralts.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/kirlia.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/kirlia.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/gardevoir.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/gardevoir.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/absol.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/absol.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/latias.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/latias.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/latios.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/latios.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/lucario.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/lucario.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/zorua.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/zorua.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/zoroark.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/zoroark.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/victini.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/victini.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/snivy.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/snivy.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/oshawott.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/oshawott.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/normal/tepig.gif',
+    'https://img.pokemondb.net/sprites/black-white/anim/shiny/tepig.gif'
 ];
 
 let isDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -141,21 +195,75 @@ function startTimer() {
 
 // Update resetTimer function by removing opacity reset
 function resetTimer() {
+    // Clear timer and reset states
     clearInterval(timer);
     isRunning = false;
     timeLeft = null;
     isBreakTime = false;
     sessionCount = 0;
     
-    const minutesInput = document.getElementById('minutes');
+    // Reset to default durations
+    workDuration = 25 * 60;
+    shortBreakDuration = 5 * 60;
+    longBreakDuration = 10 * 60;
+    
+    // Reset all display elements
+    const minutesDisplay = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     const startBtn = document.getElementById('start-btn');
+    const workTimeInput = document.getElementById('work-time');
+    const shortBreakInput = document.getElementById('short-break-time');
+    const longBreakInput = document.getElementById('long-break-time');
     
-    minutesInput.readOnly = false; // Re-enable input
-    minutesInput.value = 25;
+    // Reset timer display
+    minutesDisplay.textContent = '25';
     secondsDisplay.textContent = '00';
     startBtn.textContent = 'Start';
+    
+    // Reset input fields
+    workTimeInput.value = '25';
+    shortBreakInput.value = '5';
+    longBreakInput.value = '10';
+    
+    // Reset timer class and status
     document.querySelector('.timer').classList.remove('break-time');
+    document.getElementById('status').textContent = 'Work Time';
+    
+    // Reset HP bar
+    const hpBar = document.querySelector('.hp-remaining');
+    const currentHP = document.getElementById('current-hp');
+    const maxHP = document.getElementById('max-hp');
+    
+    hpBar.style.width = '100%';
+    hpBar.className = 'hp-remaining';
+    currentHP.textContent = '25';
+    maxHP.textContent = '25';
+}
+
+// Add to script.js
+function updateHPBar(timeLeft, totalTime) {
+    const hpBar = document.querySelector('.hp-remaining');
+    if (!hpBar) return;
+
+    requestAnimationFrame(() => {
+        const percentage = (timeLeft / totalTime) * 100;
+        hpBar.style.width = `${percentage}%`;
+        hpBar.style.transition = 'width 0.5s linear';
+        
+        updateHPBarColor(percentage, hpBar);
+    });
+}
+
+function updateHPBarColor(percentage, hpBar) {
+    const colors = {
+        low: percentage <= 20,
+        medium: percentage <= 50,
+        high: percentage > 50
+    };
+    
+    hpBar.className = `hp-remaining ${
+        colors.low ? 'low' : colors.medium ? 'medium' : ''
+    }`;
 }
 
 // Modify the updateTimer function to play sound during transitions
@@ -193,6 +301,10 @@ function updateTimer() {
     
     document.getElementById('minutes').textContent = minutes;
     document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    
+    updateHPBar(timeLeft, isBreakTime ? 
+        (sessionCount % 3 === 0 ? longBreakDuration : shortBreakDuration) : 
+        workDuration);
 }
 
 // Replace the existing toggleDarkMode function

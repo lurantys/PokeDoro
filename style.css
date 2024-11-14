@@ -1,3 +1,11 @@
+/* Add this at the top of your CSS file */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('./fonts/font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -33,6 +41,7 @@ body {
     width: 300px;
     height: 300px;
     image-rendering: pixelated;
+    transition: all 0.3s ease-in-out;
 }
 
 .timer {
@@ -42,13 +51,20 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, all 0.3s ease-in-out;
 }
 
 .time {
-    font-size: 48px;
+    font-size: 42px; /* Reduced from 48px */
     margin-bottom: 20px;
     color: #333;
+    font-family: 'CustomFont', 'Courier New', monospace; /* Fallback fonts after CustomFont */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.03);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 15px 0;
 }
 
 .time span {
@@ -59,18 +75,22 @@ body {
 /* Remove the .time input styles since we're not using inputs anymore */
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 8px 16px; /* Slightly reduced padding */
+    font-size: 14px; /* Reduced from 16px */
     margin: 5px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, all 0.3s ease-in-out;
     background-color: #f0f0f0;
+    transform: translateY(0);
+    font-family: 'CustomFont', 'Courier New', monospace;
 }
 
 button:hover {
     background-color: #ddd;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 button:active {
@@ -137,13 +157,22 @@ button:active {
 }
 
 #status {
-    font-size: 1.2em;
+    font-size: 0.9rem; /* Reduced from 1rem */
     margin-bottom: 10px;
     transition: color 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.05);
+    display: inline-block;
+    font-family: 'CustomFont', 'Courier New', monospace;
 }
 
 .break-time #status {
     color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
 }
 
 .dark-mode .break-time #status {
@@ -153,8 +182,9 @@ button:active {
 .settings label {
     display: block;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px; /* Reduced from 16px */
     color: #333;
+    font-family: 'CustomFont', 'Courier New', monospace;
 }
 
 .dark-mode .settings label {
@@ -163,12 +193,13 @@ button:active {
 
 .settings input {
     width: 50px;
-    font-size: 16px;
+    font-size: 14px; /* Reduced from 16px */
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 5px;
+    padding: 4px; /* Slightly reduced padding */
     margin-left: 10px;
+    font-family: 'CustomFont', 'Courier New', monospace;
 }
 
 .dark-mode .settings input {
@@ -191,4 +222,105 @@ button:active {
     width: 100%;
     max-width: 300px;
     height: auto;
+}
+
+/* Add to style.css */
+/* Update HP bar container styles */
+.hp-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px auto; /* Changed from 15px 0 to center */
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    width: 90%; /* Added width constraint */
+    justify-content: center; /* Added to center contents */
+}
+
+.hp-label {
+    background: #313131;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px; /* Reduced from 14px */
+    font-family: 'CustomFont', 'Courier New', monospace;
+}
+
+.hp-bar-wrapper {
+    flex-grow: 1;
+    background: #313131;
+    padding: 3px;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 250px; /* Add max-width for better control */
+}
+
+.hp-bar {
+    background: #707070;
+    height: 12px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.hp-remaining {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #00ff00, #00dd00);
+    transition: width 1s linear, background-color 0.5s, all 0.3s ease-in-out;
+}
+
+/* HP color states */
+.hp-remaining.medium {
+    background: linear-gradient(to bottom, #ffff00, #dddd00);
+}
+
+.hp-remaining.low {
+    background: linear-gradient(to bottom, #ff0000, #dd0000);
+}
+
+/* Remove or hide the HP fraction */
+.hp-fraction {
+    display: none;
+}
+
+/* Dark mode adjustments */
+.dark-mode .hp-label {
+    background: #515151;
+}
+
+.dark-mode .hp-bar-wrapper {
+    background: #515151;
+}
+
+/* Make the layout more responsive for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .header, .timer {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .sprite {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Add smoother transitions */
+.timer, .sprite, button, .hp-remaining {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effects for buttons */
+button {
+    transform: translateY(0);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
