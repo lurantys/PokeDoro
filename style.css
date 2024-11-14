@@ -1,0 +1,194 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 100px 20px 20px 20px; /* Increased top padding */
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease;
+    gap: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+    gap: 40px;
+}
+
+.header {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sprite {
+    width: 300px;
+    height: 300px;
+    image-rendering: pixelated;
+}
+
+.timer {
+    width: 400px; /* Set fixed width instead of flex-grow */
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.time {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.time span {
+    font-size: 48px;
+    color: inherit;
+}
+
+/* Remove the .time input styles since we're not using inputs anymore */
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #f0f0f0;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+button:active {
+    background-color: #ccc;
+}
+
+.dark-mode {
+    background-color: #333;
+}
+
+.dark-mode .timer {
+    background-color: #444;
+    color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode button {
+    background-color: #555;
+    color: #f4f4f4;
+}
+
+.dark-mode button:hover {
+    background-color: #666;
+}
+
+.dark-mode button:active {
+    background-color: #777;
+}
+
+.dark-mode input {
+    color: #f4f4f4;
+}
+
+.dark-mode .time,
+.dark-mode .time input,
+.dark-mode #seconds {
+    color: #f4f4f4;
+}
+
+.break-time {
+    border: 2px solid #4CAF50;
+}
+
+.break-time input {
+    color: #4CAF50;
+}
+
+.break-time #minutes,
+.break-time #seconds {
+    color: #4CAF50;
+}
+
+.dark-mode .break-time {
+    border: 2px solid #8BC34A;
+}
+
+.dark-mode .break-time input {
+    color: #8BC34A;
+}
+
+.dark-mode .break-time #minutes,
+.dark-mode .break-time #seconds {
+    color: #8BC34A;
+}
+
+#status {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.break-time #status {
+    color: #4CAF50;
+}
+
+.dark-mode .break-time #status {
+    color: #8BC34A;
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.dark-mode .settings label {
+    color: #ccc;
+}
+
+.settings input {
+    width: 50px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.dark-mode .settings input {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #ccc;
+}
+
+/* Add these styles to style.css */
+.logo {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-align: center;
+}
+
+.logo-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
