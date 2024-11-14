@@ -75,17 +75,19 @@ function playLevelUpSound() {
     }
 }
 
+// Update startTimer function
 function startTimer() {
     const startBtn = document.getElementById('start-btn');
+    const minutesInput = document.getElementById('minutes');
     
     if (!isRunning) {
         isRunning = true;
         startBtn.textContent = 'Pause';
+        minutesInput.readOnly = true; // Disable input
+        minutesInput.style.opacity = '0.7'; // Visual feedback
         
         if (!timeLeft) {
-            const minutesInput = document.getElementById('minutes');
             const workDuration = parseInt(minutesInput.value);
-            // Store original duration when first starting
             if (!originalWorkDuration) {
                 originalWorkDuration = workDuration;
             }
@@ -98,10 +100,13 @@ function startTimer() {
     } else {
         isRunning = false;
         startBtn.textContent = 'Start';
+        minutesInput.readOnly = false; // Re-enable input
+        minutesInput.style.opacity = '1'; // Restore opacity
         clearInterval(timer);
     }
 }
 
+// Update resetTimer function
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
@@ -113,6 +118,8 @@ function resetTimer() {
     const secondsDisplay = document.getElementById('seconds');
     const startBtn = document.getElementById('start-btn');
     
+    minutesInput.readOnly = false; // Re-enable input
+    minutesInput.style.opacity = '1'; // Restore opacity
     minutesInput.value = 25;
     secondsDisplay.textContent = '00';
     startBtn.textContent = 'Start';
@@ -166,7 +173,7 @@ function toggleDarkMode() {
 function setRandomPokemon() {
     const randomIndex = Math.floor(Math.random() * pokemonSprites.length);
     const pokemonImg = document.querySelector('.logo');
-    pokemonImg.src = pokemonSprites[randomIndex];
+    pokemonImg.src = po4kemonSprites[randomIndex];
 }
 
 // Add this function to script.js
