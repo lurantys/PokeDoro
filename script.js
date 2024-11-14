@@ -169,11 +169,11 @@ function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
 }
 
-// Add this function to script.js
+// Fix the setRandomPokemon function
 function setRandomPokemon() {
     const randomIndex = Math.floor(Math.random() * pokemonSprites.length);
     const pokemonImg = document.querySelector('.logo');
-    pokemonImg.src = po4kemonSprites[randomIndex];
+    pokemonImg.src = pokemonSprites[randomIndex]; // Fixed typo here
 }
 
 // Add this function to script.js
