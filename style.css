@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease;
+}
+
+.timer {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+
+.time {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.time input {
+    width: 70px;
+    font-size: 48px;
+    text-align: center;
+    border: none;
+    background: none;
+    color: inherit;
+    -moz-animation: textfield;
+}
+
+.time input::-webkit-inner-spin-button,
+.time input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #f0f0f0;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+button:active {
+    background-color: #ccc;
+}
+
+.dark-mode {
+    background-color: #333;
+}
+
+.dark-mode .timer {
+    background-color: #444;
+    color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode button {
+    background-color: #555;
+    color: #f4f4f4;
+}
+
+.dark-mode button:hover {
+    background-color: #666;
+}
+
+.dark-mode button:active {
+    background-color: #777;
+}
+
+.dark-mode input {
+    color: #f4f4f4;
+}
+
+.dark-mode .time,
+.dark-mode .time input,
+.dark-mode #seconds {
+    color: #f4f4f4;
+}
+.logo {
+    width: 300px;  /* Doubled from 150px */
+    height: 300px; /* Doubled from 150px */
+    margin-bottom: 20px;
+    margin-right: 20px; /* Shifts logo to the left relative to the timer */
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+    position: relative; /* Allows for more precise positioning if needed */
+    left: -20px; /* Additional left shift */
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.dark-mode .logo {
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+}
+
+.break-time {
+    border: 2px solid #4CAF50;
+}
+
+.break-time input {
+    color: #4CAF50;
+}
+
+.dark-mode .break-time {
+    border: 2px solid #8BC34A;
+}
+
+.dark-mode .break-time input {
+    color: #8BC34A;
+}
+
+#status {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.break-time #status {
+    color: #4CAF50;
+}
+
+.dark-mode .break-time #status {
+    color: #8BC34A;
+}

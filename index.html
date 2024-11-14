@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeDoro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img class="logo" alt="Random Pokemon" src="">
+    <div class="timer">
+        <div id="status">Work Time</div>
+        <div class="time">
+            <span id="time-display">
+                <input type="number" id="minutes" value="25" min="1" max="60">:<span id="seconds">00</span>
+            </span>
+        </div>
+        <button id="start-btn" onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+    <script src="script.js"></script>
+    <audio id="levelUpSound" src="./audio/levelup.mp3" preload="auto"></audio>
+    <audio id="buttonSound" src="./audio/button.mp3" preload="auto"></audio>
+    <audio id="backgroundMusic" src="./audio/background.mp3" loop preload="auto"></audio>
+</body>
+</html>
