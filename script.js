@@ -353,6 +353,24 @@ function startBackgroundMusic() {
     }
 }
 
+// Update the datetime format in script.js
+function updateDateTime() {
+    const now = new Date();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    const day = now.getDate();
+    const month = months[now.getMonth()];
+    const hours = now.getHours() % 12 || 12;
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? 'pm' : 'am';
+    
+    const suffix = ["th", "st", "nd", "rd"][(day % 10 > 3 ? 0 : day % 10)];
+    
+    document.getElementById('datetime').innerHTML = 
+        `<span class="time">${hours}:${minutes} ${ampm}</span>
+         <span class="date">${day}${suffix} of ${month}</span>`;
+}
+
 // Update the DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
     setRandomPokemon();
@@ -372,4 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', () => {
         startBackgroundMusic();
     }, { once: true });
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 });

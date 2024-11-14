@@ -6,6 +6,15 @@
     font-style: normal;
 }
 
+/* Add/update these styles in style.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrolling */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -14,10 +23,12 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-    padding: 100px 20px 20px 20px; /* Increased top padding */
+    padding: 0; /* Remove padding */
     background-color: #f4f4f4;
     transition: background-color 0.3s ease;
     gap: 40px;
+    position: fixed; /* Alternative approach to prevent mobile bouncing */
+    touch-action: none; /* Prevents pull-to-refresh on mobile */
 }
 
 .container {
@@ -28,6 +39,9 @@ body {
     max-width: 1000px;
     width: 100%;
     gap: 40px;
+    padding: 20px;
+    height: calc(100vh - 120px); /* Account for logo space */
+    margin-top: 100px; /* Space for logo */
 }
 
 .header {
@@ -47,11 +61,41 @@ body {
 .timer {
     width: 400px; /* Set fixed width instead of flex-grow */
     text-align: center;
-    background-color: #fff;
+    background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 4px solid #000;
+    border-radius: 2px;
+    box-shadow: 
+        inset -4px -4px 0 0 #a0a0a0,
+        inset 4px 4px 0 0 #ffffff,
+        0 0 10px rgba(0, 0, 0, 0.3); /* Added outer shadow */
     transition: background-color 0.3s ease, all 0.3s ease-in-out;
+}
+
+.timer::before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 2px;
+}
+
+.dark-mode .timer {
+    background-color: #444;
+    border: 4px solid #000; /* Changed back to black */
+    box-shadow: 
+        inset -4px -4px 0 0 #333,
+        inset 4px 4px 0 0 #666,
+        0 0 15px rgba(0, 0, 0, 0.4); /* Adjusted shadow */
+    color: #f4f4f4;
+}
+
+.dark-mode .timer::before {
+    background: #000; /* Kept black */
 }
 
 .time {
@@ -90,7 +134,7 @@ button {
 button:hover {
     background-color: #ddd;
     transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Increased shadow */
 }
 
 button:active {
@@ -101,12 +145,6 @@ button:active {
     background-color: #333;
 }
 
-.dark-mode .timer {
-    background-color: #444;
-    color: #f4f4f4;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
 .dark-mode button {
     background-color: #555;
     color: #f4f4f4;
@@ -114,6 +152,7 @@ button:active {
 
 .dark-mode button:hover {
     background-color: #666;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
 }
 
 .dark-mode button:active {
@@ -297,6 +336,8 @@ button:active {
     .container {
         flex-direction: column;
         gap: 20px;
+        padding: 10px;
+        height: calc(100vh - 100px);
     }
     
     .header, .timer {
@@ -305,8 +346,8 @@ button:active {
     }
     
     .sprite {
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -323,4 +364,56 @@ button {
 button:hover {
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Add to style.css */
+.datetime-display {
+    position: fixed;
+    top: 85px;
+    left: 20px;
+    font-family: 'CustomFont', 'Courier New', monospace;
+    width: 200px;
+    text-align: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    border: 4px solid #000;
+    border-radius: 2px;
+    box-shadow: 
+        inset -4px -4px 0 0 #a0a0a0,
+        inset 4px 4px 0 0 #ffffff,
+        0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    min-height: 80px; /* Ensure consistent height */
+}
+
+.datetime-display .time {
+    display: block;
+    font-size: 36px;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 8px;
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.datetime-display .date {
+    display: block;
+    font-size: 12px;
+    color: #333;
+    line-height: 1;
+}
+
+.dark-mode .datetime-display {
+    background-color: #444;
+    box-shadow: 
+        inset -4px -4px 0 0 #333,
+        inset 4px 4px 0 0 #666,
+        0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .datetime-display .time,
+.dark-mode .datetime-display .date {
+    color: #f4f4f4;
 }
