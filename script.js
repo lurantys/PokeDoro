@@ -371,7 +371,79 @@ function updateDateTime() {
          <span class="date">${day}${suffix} of ${month}</span>`;
 }
 
-// Update the DOMContentLoaded event listener
+// Add to script.js
+let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+function toggleTaskInput() {
+    const inputWrapper = document.querySelector('.task-input-wrapper');
+    const currentDisplay = inputWrapper.style.display;
+    inputWrapper.style.display = currentDisplay === 'none' ? 'block' : 'none';
+    if (currentDisplay === 'none') {
+        document.getElementById('task-input').focus();
+    }
+}
+
+function addTask(text) {
+    const task = {
+        id: Date.now(),
+        text: text,
+        completed: false
+    };
+    tasks.push(task);
+    saveTasks();
+    renderTasks();
+}
+
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveTasks();
+    renderTasks();
+}
+
+function toggleTask(id) {
+    const task = tasks.find(task => task.id === id);
+    if (task) {
+        task.completed = !task.completed;
+        saveTasks();
+        renderTasks();
+    }
+}
+
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function renderTasks() {
+    const tasksList = document.getElementById('tasks-list');
+    tasksList.innerHTML = '';
+    
+    tasks.forEach(task => {
+        const taskElement = document.createElement('div');
+        taskElement.className = 'task-item';
+        taskElement.innerHTML = `
+            <input type="checkbox" class="task-checkbox" 
+                   ${task.completed ? 'checked' : ''} 
+                   onclick="toggleTask(${task.id})">
+            <span class="task-text ${task.completed ? 'task-completed' : ''}">${task.text}</span>
+            <button class="task-delete" onclick="deleteTask(${task.id})">×</button>
+        `;
+        tasksList.appendChild(taskElement);
+    });
+}
+
+// Event listener for task input
+document.getElementById('task-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const text = e.target.value.trim();
+        if (text) {
+            addTask(text);
+            e.target.value = '';
+            toggleTaskInput();
+        }
+    }
+});
+
+// Initial render
 document.addEventListener('DOMContentLoaded', () => {
     setRandomPokemon();
     if (isDarkMode) {
@@ -393,4 +465,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateDateTime();
     setInterval(updateDateTime, 1000);
+    renderTasks();
 });

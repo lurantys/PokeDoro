@@ -42,6 +42,16 @@
                 <label>Long Break: <input type="number" id="long-break-time" value="10" min="1" max="60"> minutes</label>
             </div>
         </div>
+        <div class="checklist-container">
+            <div class="checklist-header">
+                <span>Tasks</span>
+                <button class="add-task-btn" onclick="toggleTaskInput()">+</button>
+            </div>
+            <div class="task-input-wrapper" style="display: none;">
+                <input type="text" id="task-input" placeholder="New task...">
+            </div>
+            <div id="tasks-list"></div>
+        </div>
     </div>
     <script src="script.js"></script>
     <audio id="levelUpSound" src="./audio/levelup.mp3" preload="auto"></audio>

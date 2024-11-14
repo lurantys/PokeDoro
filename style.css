@@ -42,6 +42,7 @@ body {
     padding: 20px;
     height: calc(100vh - 120px); /* Account for logo space */
     margin-top: 100px; /* Space for logo */
+    margin-left: 260px; /* Adjust main container to account for sidebar */
 }
 
 .header {
@@ -416,4 +417,106 @@ button:hover {
 .dark-mode .datetime-display .time,
 .dark-mode .datetime-display .date {
     color: #f4f4f4;
+}
+
+.checklist-container {
+    position: fixed;
+    top: 250px; /* Increased spacing from datetime display */
+    left: 20px;
+    width: 200px; /* Match datetime display width */
+    text-align: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    border: 4px solid #000;
+    border-radius: 2px;
+    box-shadow: 
+        inset -4px -4px 0 0 #a0a0a0,
+        inset 4px 4px 0 0 #ffffff,
+        0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    height: calc(100vh - 400px - 40px); /* Match timer container bottom edge with 40px bottom margin */
+    overflow-y: auto; /* Enable scrolling for long lists */
+}
+
+.dark-mode .checklist-container {
+    background-color: #444;
+    box-shadow: 
+        inset -4px -4px 0 0 #333,
+        inset 4px 4px 0 0 #666,
+        0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Task list styles */
+#tasks-list {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.checklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'CustomFont', 'Courier New', monospace;
+}
+
+.add-task-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    font-family: 'CustomFont', 'Courier New', monospace;
+}
+
+.task-input-wrapper {
+    margin-bottom: 10px;
+}
+
+#task-input {
+    width: 100%;
+    padding: 5px;
+    font-family: 'CustomFont', 'Courier New', monospace;
+    border: 2px solid #000;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-family: 'CustomFont', 'Courier New', monospace;
+}
+
+.task-checkbox {
+    margin-right: 8px;
+}
+
+.task-text {
+    flex-grow: 1;
+}
+
+.task-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.task-completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.dark-mode .checklist-container {
+    background-color: #444;
+    color: #f4f4f4;
+    box-shadow: 
+        inset -4px -4px 0 0 #333,
+        inset 4px 4px 0 0 #666,
+        0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode #task-input {
+    background-color: #555;
+    color: #f4f4f4;
+    border-color: #222;
 }
