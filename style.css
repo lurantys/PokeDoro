@@ -31,18 +31,19 @@ body {
     touch-action: none; /* Prevents pull-to-refresh on mobile */
 }
 
+/* Update container positioning */
 .container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    max-width: 1000px;
+    max-width: 90vw;
     width: 100%;
-    gap: 40px;
-    padding: 20px;
+    gap: 2vw;
+    padding: 1vw;
     height: calc(100vh - 120px); /* Account for logo space */
-    margin-top: 100px; /* Space for logo */
-    margin-left: 260px; /* Adjust main container to account for sidebar */
+    margin-top: min(100px, 10vh); /* Space for logo */
+    margin-left: max(260px, 20vw); /* Adjust main container to account for sidebar */
 }
 
 .header {
@@ -53,8 +54,8 @@ body {
 }
 
 .sprite {
-    width: 300px;
-    height: 300px;
+    width: min(300px, 25vw);
+    height: min(300px, 25vw);
     image-rendering: pixelated;
     transition: all 0.3s ease-in-out;
 }
@@ -113,15 +114,15 @@ body {
 }
 
 .time span {
-    font-size: 48px;
+    font-size: min(48px, 4vw);
     color: inherit;
 }
 
 /* Remove the .time input styles since we're not using inputs anymore */
 
 button {
-    padding: 8px 16px; /* Slightly reduced padding */
-    font-size: 14px; /* Reduced from 16px */
+    padding: max(6px, 0.5vw) max(12px, 1vw); /* Slightly reduced padding */
+    font-size: max(12px, 0.9vw); /* Reduced from 16px */
     margin: 5px;
     border: none;
     border-radius: 5px;
@@ -370,10 +371,10 @@ button:hover {
 /* Add to style.css */
 .datetime-display {
     position: fixed;
-    top: 85px;
-    left: 20px;
+    top: min(85px, 10vh);
+    left: max(20px, 2vw);
     font-family: 'CustomFont', 'Courier New', monospace;
-    width: 200px;
+    width: min(200px, 20vw);
     text-align: center;
     padding: 10px 20px;
     z-index: 1000;
@@ -421,9 +422,9 @@ button:hover {
 
 .checklist-container {
     position: fixed;
-    top: 250px; /* Increased spacing from datetime display */
-    left: 20px;
-    width: 200px; /* Match datetime display width */
+    top: min(250px, 30vh); /* Increased spacing from datetime display */
+    left: max(20px, 2vw);
+    width: min(200px, 20vw); /* Match datetime display width */
     text-align: center;
     padding: 10px 20px;
     z-index: 1000;
@@ -434,7 +435,7 @@ button:hover {
         inset 4px 4px 0 0 #ffffff,
         0 0 10px rgba(0, 0, 0, 0.3);
     background-color: white;
-    height: calc(100vh - 400px - 40px); /* Match timer container bottom edge with 40px bottom margin */
+    height: calc(100vh - min(400px, 45vh) - 40px); /* Match timer container bottom edge with 40px bottom margin */
     overflow-y: auto; /* Enable scrolling for long lists */
 }
 
@@ -547,28 +548,63 @@ button:hover {
 }
 
 /* Add these styles to style.css */
-.sliding-container {
+/* Reset sliding containers base position */
+.sliding-container, .pokemon-info-container {
     position: fixed;
-    top: 85px;
-    right: -220px; /* Changed from left to right */
-    width: 200px;
-    min-height: 240px; /* Increased to fit all badges */
-    padding: 10px 20px;
+    width: min(200px, 20vw);
     background-color: white;
     z-index: 1000;
     border: 4px solid #000;
     border-radius: 2px;
+    padding: 10px 20px;
     box-shadow: 
         inset -4px -4px 0 0 #a0a0a0,
-        inset 4px 4px 0 0 #ffffff,
+        inset 4px -4px 0 0 #ffffff,
         0 0 10px rgba(0, 0, 0, 0.3);
-    transition: right 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(calc(100% - 30px)); /* Show 30px of container */
+}
+
+/* Update hover state to use transform */
+.sliding-container:hover,
+.pokemon-info-container:hover {
+    transform: translateX(0);
+}
+
+/* Position containers */
+.sliding-container {
+    top: min(85px, 10vh);
+    right: 0;
+    min-height: min(240px, 30vh);
+}
+
+.pokemon-info-container {
+    top: min(380px, 45vh);
+    right: 0;
+    min-height: calc(100vh - min(460px, 55vh));
+}
+
+/* Ensure label visibility */
+.sliding-container::before,
+.pokemon-info-container::before {
+    z-index: 1001;
+}
+
+/* Dark mode adjustments */
+.dark-mode .sliding-container,
+.dark-mode .pokemon-info-container {
+    background-color: #444;
+    color: #f4f4f4;
+    box-shadow: 
+        inset -4px -4px 0 0 #333,
+        inset 4px 4px 0 0 #666,
+        0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 .sliding-container::before {
     content: 'BADGES';
     position: absolute;
-    left: -50px; /* Moved further out */
+    left: -45px; /* Moved further out */
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     font-family: 'CustomFont', 'Courier New', monospace;
@@ -606,8 +642,8 @@ button:hover {
 }
 
 .badge-icon {
-    width: 35px; /* Slightly reduced size */
-    height: 35px;
+    width: min(35px, 3vw); /* Slightly reduced size */
+    height: min(35px, 3vw);
     filter: grayscale(100%);
     opacity: 0.5;
     transition: all 0.3s ease;
@@ -638,7 +674,7 @@ button:hover {
     width: 100px;
     text-align: center;
     font-family: 'CustomFont', 'Courier New', monospace;
-    font-size: 12px;
+    font-size: max(10px, 0.8vw);
     z-index: 1001;
     box-shadow: 
         inset -2px -2px 0 0 #a0a0a0,
@@ -697,27 +733,14 @@ button:hover {
 
 /* Add to style.css */
 .pokemon-info-container {
-    position: fixed;
-    top: 380px;
-    right: -220px;
-    width: 200px;
-    min-height: calc(100vh - 460px);
-    padding: 10px 20px;
-    background-color: white;
-    z-index: 1000;
-    border: 4px solid #000;
-    border-radius: 2px;
-    box-shadow: 
-        inset -4px -4px 0 0 #a0a0a0,
-        inset 4px 4px 0 0 #ffffff,
-        0 0 10px rgba(0, 0, 0, 0.3);
-    transition: right 0.3s ease-in-out;
+    top: min(380px, 45vh);
+    min-height: calc(100vh - min(460px, 55vh));
 }
 
 .pokemon-info-container::before {
     content: 'POKEDEX';
     position: absolute;
-    left: -55px;
+    left: -45px;
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     font-family: 'CustomFont', 'Courier New', monospace;
@@ -734,8 +757,8 @@ button:hover {
 }
 
 .pokemon-small-sprite {
-    width: 96px;
-    height: 96px;
+    width: min(96px, 8vw);
+    height: min(96px, 8vw);
     margin: 0 auto;
     display: block;
     image-rendering: pixelated;
@@ -760,7 +783,7 @@ button:hover {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: max(10px, 0.8vw);
     padding: 2px 0;
 }
 
@@ -769,7 +792,7 @@ button:hover {
     flex-direction: column;
     gap: 10px;
     font-family: 'CustomFont', 'Courier New', monospace;
-    font-size: 12px;
+    font-size: max(10px, 0.8vw);
 }
 
 .pokemon-name {
@@ -825,4 +848,71 @@ button:hover {
         inset -4px -4px 0 0 #333,
         inset 4px 4px 0 0 #666,
         0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Add media queries for different screen sizes */
+@media (max-width: 1366px) {
+    .container {
+        margin-left: max(220px, 18vw);
+    }
+    
+    .sliding-container, .pokemon-info-container, .datetime-display, .checklist-container {
+        width: min(180px, 18vw);
+    }
+    
+    .sliding-container::before, .pokemon-info-container::before {
+        left: -45px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        margin-left: max(200px, 16vw);
+        gap: 1vw;
+    }
+    
+    .sliding-container, .pokemon-info-container, .datetime-display, .checklist-container {
+        width: min(160px, 16vw);
+    }
+}
+
+/* Add smaller screen support */
+@media (max-height: 768px) {
+    .sliding-container {
+        min-height: min(200px, 25vh);
+    }
+    
+    .pokemon-info-container {
+        top: min(320px, 40vh);
+    }
+    
+    .checklist-container {
+        top: min(220px, 28vh);
+    }
+}
+
+/* Media queries for responsive sliding */
+@media (max-width: 1366px) {
+    .sliding-container,
+    .pokemon-info-container {
+        right: min(-200px, -20vw);
+    }
+    
+    .sliding-container:hover,
+    .pokemon-info-container:hover {
+        right: max(15px, 1.5vw);
+    }
+}
+
+@media (max-width: 1024px) {
+    .sliding-container,
+    .pokemon-info-container {
+        right: min(-180px, -18vw);
+    }
+    
+    .sliding-container:hover,
+    .pokemon-info-container:hover {
+        right: max(10px, 1vw);
+    }
 }
