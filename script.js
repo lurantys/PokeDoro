@@ -128,7 +128,6 @@ let shortBreakDuration = 5 * 60;
 let longBreakDuration = 10 * 60;
 let sessionCount = 0;
 
-// Add this function after the existing variables in script.js
 function playLevelUpSound() {
     const sound = document.getElementById('levelUpSound');
     if (!sound) {
@@ -164,7 +163,6 @@ function playLevelUpSound() {
     }
 }
 
-// Update startTimer function by removing opacity changes
 function startTimer() {
     const startBtn = document.getElementById('start-btn');
     const minutesInput = document.getElementById('minutes');
@@ -172,7 +170,7 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         startBtn.textContent = 'Pause';
-        minutesInput.readOnly = true; // Disable input without changing appearance
+        minutesInput.readOnly = true; 
         
         if (!timeLeft) {
             workDuration = parseInt(document.getElementById('work-time').value) * 60;
@@ -188,26 +186,26 @@ function startTimer() {
     } else {
         isRunning = false;
         startBtn.textContent = 'Start';
-        minutesInput.readOnly = false; // Re-enable input
+        minutesInput.readOnly = false; 
         clearInterval(timer);
     }
 }
 
-// Update resetTimer function by removing opacity reset
+
 function resetTimer() {
-    // Clear timer and reset states
     clearInterval(timer);
     isRunning = false;
     timeLeft = null;
     isBreakTime = false;
-    sessionCount = 0;
-    
-    // Reset to default durations
+    sessionCount = 0; // Reset to default durations
+    workDuration = 25 * 60;
+    shortBreakDuration = 5 * 60;
+    longBreakDuration = 10 * 60;
     workDuration = 25 * 60;
     shortBreakDuration = 5 * 60;
     longBreakDuration = 10 * 60;
     
-    // Reset all display elements
+
     const minutesDisplay = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     const startBtn = document.getElementById('start-btn');
@@ -215,21 +213,19 @@ function resetTimer() {
     const shortBreakInput = document.getElementById('short-break-time');
     const longBreakInput = document.getElementById('long-break-time');
     
-    // Reset timer display
     minutesDisplay.textContent = '25';
     secondsDisplay.textContent = '00';
     startBtn.textContent = 'Start';
     
-    // Reset input fields
     workTimeInput.value = '25';
     shortBreakInput.value = '5';
     longBreakInput.value = '10';
     
-    // Reset timer class and status
+
     document.querySelector('.timer').classList.remove('break-time');
     document.getElementById('status').textContent = 'Work Time';
     
-    // Reset HP bar
+
     const hpBar = document.querySelector('.hp-remaining');
     const currentHP = document.getElementById('current-hp');
     const maxHP = document.getElementById('max-hp');
@@ -240,7 +236,7 @@ function resetTimer() {
     maxHP.textContent = '25';
 }
 
-// Add to script.js
+
 function updateHPBar(timeLeft, totalTime) {
     const hpBar = document.querySelector('.hp-remaining');
     if (!hpBar) return;
@@ -266,7 +262,7 @@ function updateHPBarColor(percentage, hpBar) {
     }`;
 }
 
-// Modify the updateTimer function to play sound during transitions
+
 function updateTimer() {
     if (timeLeft <= 0) {
         clearInterval(timer);
@@ -291,6 +287,7 @@ function updateTimer() {
             statusEl.textContent = 'Work Time';
         }
         
+        updateBadgeProgress();
         startTimer();
         return;
     }
@@ -307,22 +304,67 @@ function updateTimer() {
         workDuration);
 }
 
-// Replace the existing toggleDarkMode function
 function toggleDarkMode() {
     isDarkMode = !isDarkMode;
     localStorage.setItem('darkMode', isDarkMode);
     document.body.classList.toggle('dark-mode');
 }
 
-// Fix the setRandomPokemon function
+
+// Modify setRandomPokemon function to update info
 function setRandomPokemon() {
     const randomIndex = Math.floor(Math.random() * (pokemonSprites.length / 2)) * 2;
     const isChromatic = Math.random() < 0.01; // 1% chance
     const pokemonImg = document.querySelector('.sprite'); // Changed from .logo to .sprite
-    pokemonImg.src = pokemonSprites[randomIndex + (isChromatic ? 1 : 0)];
+    const spriteUrl = pokemonSprites[randomIndex + (isChromatic ? 1 : 0)];
+    pokemonImg.src = spriteUrl;
+    updatePokemonInfo(spriteUrl);
 }
 
-// Add this function to script.js
+// Update updatePokemonInfo function in script.js
+function updatePokemonInfo(spriteUrl) {
+    const pokemonId = spriteUrl.split('/').slice(-1)[0].split('.')[0].replace(/^0+/, '');
+    const infoContainer = document.querySelector('.pokemon-info-content');
+    
+    infoContainer.querySelector('.pokemon-name').textContent = 'Loading...';
+    infoContainer.querySelector('.pokemon-small-sprite').src = spriteUrl;
+    
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then(response => response.json())
+        .then(data => {
+            const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+            const types = data.types.map(t => t.type.name.toUpperCase()).join(', ');
+            
+            infoContainer.querySelector('.pokemon-name').textContent = name;
+            infoContainer.querySelector('.pokemon-type').textContent = `Type: ${types}`;
+            
+            data.stats.forEach(stat => {
+                const statName = stat.stat.name.replace('-', '');
+                if (['hp', 'attack', 'defense', 'speed'].includes(statName)) {
+                    const statElement = infoContainer.querySelector(`.${statName}`);
+                    if (statElement) {
+                        statElement.textContent = stat.base_stat;
+                    }
+                }
+            });
+            
+            return fetch(data.species.url);
+        })
+        .then(response => response.json())
+        .then(speciesData => {
+            const description = speciesData.flavor_text_entries
+                .find(entry => entry.language.name === 'en')
+                .flavor_text.replace(/\f/g, ' ');
+            
+            infoContainer.querySelector('.pokemon-description').textContent = description;
+        })
+        .catch(error => {
+            console.error('Error fetching Pokemon data:', error);
+            infoContainer.querySelector('.pokemon-name').textContent = 'Data unavailable';
+        });
+}
+
+
 function playButtonSound() {
     const sound = document.getElementById('buttonSound');
     if (!sound) return;
@@ -332,20 +374,19 @@ function playButtonSound() {
     sound.play().catch(error => console.error('Error playing button sound:', error));
 }
 
-// Add this function to script.js
+
 function startBackgroundMusic() {
     const bgMusic = document.getElementById('backgroundMusic');
     if (!bgMusic) return;
     
     bgMusic.volume = 0.1; // 90% lower volume
     
-    // Play music with promise handling
+
     const playPromise = bgMusic.play();
     
     if (playPromise !== undefined) {
         playPromise.catch(error => {
             console.error('Error playing background music:', error);
-            // Try playing on first user interaction
             document.addEventListener('click', () => {
                 bgMusic.play().catch(e => console.error('Background music autoplay failed:', e));
             }, { once: true });
@@ -353,7 +394,7 @@ function startBackgroundMusic() {
     }
 }
 
-// Update the datetime format in script.js
+
 function updateDateTime() {
     const now = new Date();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -371,7 +412,6 @@ function updateDateTime() {
          <span class="date">${day}${suffix} of ${month}</span>`;
 }
 
-// Add to script.js
 let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
 function toggleTaskInput() {
@@ -431,7 +471,6 @@ function renderTasks() {
     });
 }
 
-// Event listener for task input
 document.getElementById('task-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         const text = e.target.value.trim();
@@ -443,22 +482,39 @@ document.getElementById('task-input').addEventListener('keypress', (e) => {
     }
 });
 
-// Initial render
+function updateTimerDisplay() {
+    const workTime = parseInt(document.getElementById('work-time').value);
+    const minutes = document.getElementById('minutes');
+    const seconds = document.getElementById('seconds');
+    const hpBar = document.querySelector('.hp-remaining');
+    const currentHP = document.getElementById('current-hp');
+    const maxHP = document.getElementById('max-hp');
+
+    minutes.textContent = workTime.toString().padStart(2, '0');
+    seconds.textContent = '00';
+
+    if (hpBar && currentHP && maxHP) {
+        hpBar.style.width = '100%';
+        currentHP.textContent = workTime;
+        maxHP.textContent = workTime;
+    }
+
+    workDuration = workTime * 60;
+    timeLeft = null; 
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setRandomPokemon();
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
     }
     
-    // Get all buttons
     const buttons = document.querySelectorAll('button');
     
-    // Add click listener to each button
     buttons.forEach(button => {
         button.addEventListener('click', playButtonSound);
     });
 
-    // Start background music on first user interaction
     document.addEventListener('click', () => {
         startBackgroundMusic();
     }, { once: true });
@@ -466,4 +522,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDateTime();
     setInterval(updateDateTime, 1000);
     renderTasks();
+    const durationInputs = ['work-time', 'short-break-time', 'long-break-time'];
+    durationInputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', () => {
+                if (id === 'work-time' && !isRunning) {
+                    updateTimerDisplay();
+                }
+            });
+        }
+    });
 });
+
+// Add to script.js
+function updateBadgeProgress() {
+    const badges = document.querySelectorAll('.badge-wrapper');
+    badges.forEach((badge, index) => {
+        const requiredSessions = (index + 1) * 10;
+        const tooltip = badge.querySelector('.badge-tooltip');
+        if (tooltip) {
+            tooltip.textContent = `${sessionCount}/${requiredSessions} sessions complete`;
+            if (sessionCount >= requiredSessions) {
+                badge.querySelector('.badge-icon').classList.add('earned');
+            }
+        }
+    });
+}
