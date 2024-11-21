@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "PokeDoro - Pokemon Themed Pomodoro Timer",
+    "version": "1.0",
+    "description": "skibidi skibidi hawk tuah hawk.",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "./icons/pikachu.png",
+        "48": "./icons/pikachu.png",
+        "128": "./icons/pikachu.png"
+      }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "alarms",
+        "storage"
+    ]
+}
