@@ -21,7 +21,7 @@ The **Pokémon-Themed Pomodoro Timer** is a web-based application inspired by th
 - **Customizable Settings**: Adjust study and break intervals to fit your personal productivity style.
 
 ## Getting Started
-To use the Pokémon-Themed Pomodoro Timer, simply visit the [live site](https://lurantys.github.io/PokeDoro), or follow the steps below to run it locally.
+To use the Pokémon-Themed Pomodoro Timer, simply visit the [live site]((https://pokedoro.duckdns.org/)), or follow the steps below to run it locally.
 
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Safari, etc.)
