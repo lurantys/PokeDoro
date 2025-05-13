@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeDoro - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="./icons/logo.png" alt="PokeDoro Logo" class="logo-img">
+    </div>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-title">TRAINER LOGIN</div>
+            <form id="login-form">
+                <div class="input-group">
+                    <div class="input-label">TRAINER NAME</div>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <div class="input-label">PASSWORD</div>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">START JOURNEY</button>
+            </form>
+            <div class="register-link">
+                <span>NEW TRAINER? </span><a href="#" id="register-link">REGISTER HERE</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>Developed by @lurantys</span>
+        <span class="copyright">© 2024</span>
+    </div>
+    <script src="auth.js"></script>
+    <audio id="buttonSound" src="./audio/button.mp3" preload="auto"></audio>
+</body>
+</html> 
